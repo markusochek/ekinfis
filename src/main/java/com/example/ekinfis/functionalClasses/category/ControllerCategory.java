@@ -15,6 +15,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/api/categories")
 public class ControllerCategory {
     private ServiceCategory serviceCategory;

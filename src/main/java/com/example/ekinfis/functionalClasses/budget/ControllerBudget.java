@@ -15,6 +15,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/api/budgets")
 public class ControllerBudget {
     private ServiceBudget serviceBudget;

@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        return http.csrf().disable().cors().disable()
                 .authorizeHttpRequests().requestMatchers("/**").permitAll()
 //                .and()
 //                .authorizeHttpRequests().requestMatchers("/api/budgets/**").authenticated()

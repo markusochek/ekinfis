@@ -11,6 +11,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("api/users")
 public class ControllerUser {
 
