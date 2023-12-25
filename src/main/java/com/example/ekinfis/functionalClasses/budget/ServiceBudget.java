@@ -22,14 +22,14 @@ public class ServiceBudget {
     }
 
     public Integer addBudget(String token, AddBudget addBudget) {
-        EntityCategory entityCategory = repositoryCategory.findById(addBudget.getCategoryEntityId()).orElseThrow(() -> new RuntimeException("Could not find category"));
+        EntityCategory entityCategory = repositoryCategory.findById(addBudget.getCategoryId()).orElseThrow(() -> new RuntimeException("Could not find category"));
         EntityUser entityUser = repositoryUser.findByToken(token).orElseThrow(() -> new RuntimeException("Could not find user"));
         return repositoryBudget.save(new EntityBudget(addBudget, entityCategory, entityUser)).getId();
     }
 
     public Boolean updateBudget(UpdateBudget updateBudget) {
         EntityBudget entityBudgetDB = repositoryBudget.findById(updateBudget.getId()).orElseThrow(() -> new RuntimeException("Could not find budget"));
-        EntityCategory entityCategory = repositoryCategory.findById(updateBudget.getCategoryEntityId()).orElseThrow(() -> new RuntimeException("Could not find category"));
+        EntityCategory entityCategory = repositoryCategory.findById(updateBudget.getCategoryId()).orElseThrow(() -> new RuntimeException("Could not find category"));
         entityBudgetDB.setAll(updateBudget, entityCategory);
         repositoryBudget.save(entityBudgetDB);
         return true;

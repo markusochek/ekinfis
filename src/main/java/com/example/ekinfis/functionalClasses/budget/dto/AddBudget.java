@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class AddBudget {
     private String name;
     private Float balance;
-    private Integer categoryEntityId;
+    private Integer categoryId;
 }

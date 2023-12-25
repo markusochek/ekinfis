@@ -11,5 +11,5 @@ public class UpdateBudget {
     private Integer id;
     private String name;
     private Float balance;
-    private Integer categoryEntityId;
+    private Integer categoryId;
 }
