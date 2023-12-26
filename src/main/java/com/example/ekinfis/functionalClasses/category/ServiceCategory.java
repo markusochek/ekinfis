@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +19,10 @@ public class ServiceCategory {
     public Integer addCategory(String token, AddCategory addCategory) {
         System.out.println(token);
         EntityUser entityUser = repositoryUser.findByToken(token).orElseThrow(() -> new RuntimeException("Could not find user"));
+        Optional<EntityCategory> entityCategory = repositoryCategory.findByName(addCategory.getName());
+        if (entityCategory.isPresent()) {
+            return entityCategory.get().getId();
+        }
         return repositoryCategory.save(new EntityCategory(addCategory, entityUser)).getId();
     }
 
