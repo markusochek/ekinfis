@@ -16,6 +16,7 @@ public class ServiceCategory {
     RepositoryUser repositoryUser;
 
     public Integer addCategory(String token, AddCategory addCategory) {
+        System.out.println(token);
         EntityUser entityUser = repositoryUser.findByToken(token).orElseThrow(() -> new RuntimeException("Could not find user"));
         return repositoryCategory.save(new EntityCategory(addCategory, entityUser)).getId();
     }

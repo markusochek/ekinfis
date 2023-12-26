@@ -1,8 +1,8 @@
 package com.example.ekinfis.functionalClasses.user;
 
+import com.example.ekinfis.functionalClasses.allDto.Response;
 import com.example.ekinfis.functionalClasses.user.dto.AddUser;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,12 +18,12 @@ public class ControllerUser {
     private ServiceUser serviceUser;
 
     @PostMapping("registration")
-    public ResponseEntity<Boolean> registration(@RequestBody AddUser addUser) throws NoSuchAlgorithmException {
-        return ok(serviceUser.registration(addUser));
+    public Response registration(@RequestBody AddUser addUser) throws NoSuchAlgorithmException {
+        return new Response(serviceUser.registration(addUser));
     }
 
     @PostMapping("authorization")
-    public ResponseEntity<String> authorization(@RequestBody AddUser addUser) throws NoSuchAlgorithmException {
-        return ok(serviceUser.authorization(addUser));
+    public Response authorization(@RequestBody AddUser addUser) throws NoSuchAlgorithmException {
+        return new Response(serviceUser.authorization(addUser));
     }
 }

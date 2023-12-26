@@ -1,4 +1,4 @@
-package com.example.ekinfis.functionalClasses.user.dto;
+package com.example.ekinfis.functionalClasses.allDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddUser {
-    private String login;
-    private String password;
+public class GetIsCorrect {
+    Boolean isCorrect;
 }

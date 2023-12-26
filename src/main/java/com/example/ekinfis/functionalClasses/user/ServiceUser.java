@@ -16,8 +16,8 @@ public class ServiceUser {
 
     public Boolean registration(AddUser addUser) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update((addUser.getLogin() + addUser.getPassword() + addUser.getRnd()).getBytes());
-        md.update(((addUser.getLogin() + addUser.getPassword()) + addUser.getRnd() + md).getBytes());
+        md.update((addUser.getLogin() + addUser.getPassword()).getBytes());
+        md.update(((addUser.getLogin() + addUser.getPassword()) + md).getBytes());
         String encodedPassword = DatatypeConverter.printHexBinary(md.digest()).toUpperCase();
 
         if (!repositoryUser.existsByLogin(addUser.getLogin())) {
@@ -29,8 +29,8 @@ public class ServiceUser {
 
     public String authorization(AddUser addUser) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update((addUser.getLogin() + addUser.getPassword() + addUser.getRnd()).getBytes());
-        md.update(((addUser.getLogin() + addUser.getPassword()) + addUser.getRnd() + md).getBytes());
+        md.update((addUser.getLogin() + addUser.getPassword()).getBytes());
+        md.update(((addUser.getLogin() + addUser.getPassword()) + md).getBytes());
         String encodedPassword = DatatypeConverter.printHexBinary(md.digest()).toUpperCase();
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

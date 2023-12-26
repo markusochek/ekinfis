@@ -1,15 +1,11 @@
 package com.example.ekinfis.functionalClasses.category;
 
-import com.example.ekinfis.functionalClasses.budget.EntityBudget;
-import com.example.ekinfis.functionalClasses.budget.ServiceBudget;
+import com.example.ekinfis.functionalClasses.allDto.Response;
 import com.example.ekinfis.functionalClasses.category.dto.AddCategory;
 import com.example.ekinfis.functionalClasses.category.dto.UpdateCategory;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -22,25 +18,25 @@ public class ControllerCategory {
 
     @PreAuthorize("@AccessVerification.checkToken(token)")
     @PostMapping
-    public ResponseEntity<Integer> addCategory(@RequestHeader("authorization") String token, @RequestBody AddCategory addCategory) {
-        return ok(serviceCategory.addCategory(token, addCategory));
+    public Response addCategory(@RequestHeader("authorization") String token, @RequestBody AddCategory addCategory) {
+        return new Response(serviceCategory.addCategory(token, addCategory));
     }
 
     @PreAuthorize("@AccessVerification.checkToken(token)")
     @GetMapping
-    public ResponseEntity<Collection<EntityCategory>> getCategories(@RequestHeader("authorization") String token) {
-        return ok(serviceCategory.getCategories());
+    public Response getCategories(@RequestHeader("authorization") String token) {
+        return new Response(serviceCategory.getCategories());
     }
 
     @PreAuthorize("@AccessVerification.checkToken(token)")
     @PutMapping
-    public ResponseEntity<Boolean> updateCategory(@RequestHeader("authorization") String token, @RequestBody UpdateCategory updateCategory) {
-        return ok(serviceCategory.updateCategory(updateCategory));
+    public Response updateCategory(@RequestHeader("authorization") String token, @RequestBody UpdateCategory updateCategory) {
+        return new Response(serviceCategory.updateCategory(updateCategory));
     }
 
     @PreAuthorize("@AccessVerification.checkToken(token)")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCategory(@RequestHeader("authorization") String token, @PathVariable Integer id) {
-        return ok(serviceCategory.deleteCategory(id));
+    public Response deleteCategory(@RequestHeader("authorization") String token, @PathVariable Integer id) {
+        return new Response(serviceCategory.deleteCategory(id));
     }
 }
