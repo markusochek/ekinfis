@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +23,7 @@ public class EntityBudget {
     private Integer id;
     private String name;
     private Float balance;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -33,6 +36,7 @@ public class EntityBudget {
     public EntityBudget(AddBudget addBudget, EntityCategory entityCategory, EntityUser entityUser) {
         this.name = addBudget.getName();
         this.balance = addBudget.getBalance();
+        this.date = addBudget.getDate();
         this.entityCategory = entityCategory;
         this.entityUser = entityUser;
     }
@@ -40,6 +44,7 @@ public class EntityBudget {
     public void setAll(UpdateBudget entityBudget, EntityCategory entityCategory) {
         this.name = entityBudget.getName();
         this.balance = entityBudget.getBalance();
+        this.date = entityBudget.getDate();
         this.entityCategory = entityCategory;
     }
 }
